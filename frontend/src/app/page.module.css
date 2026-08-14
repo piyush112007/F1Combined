@@ -1,0 +1,197 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.header {
+  margin-bottom: var(--space-md);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.fullWidth {
+  grid-column: span 2;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+}
+
+.clickableCard {
+  cursor: pointer;
+  border-color: rgba(210, 153, 34, 0.4);
+}
+
+.clickableCard:hover {
+  border-color: rgba(210, 153, 34, 1);
+  background-color: rgba(210, 153, 34, 0.05);
+}
+
+.clickableCard:hover .arrowIcon {
+  transform: translateX(4px);
+  color: #d29922;
+}
+
+.arrowIcon {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.cardContent {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.raceName {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.raceMeta {
+  font-size: 13px;
+  color: var(--accent-red);
+}
+
+.standingsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.standingsItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+}
+
+.position {
+  font-weight: 700;
+  color: var(--accent-red);
+  width: 30px;
+}
+
+.driverName {
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.points {
+  font-weight: 600;
+  color: var(--accent-purple);
+  flex-shrink: 0;
+}
+
+.cardLink {
+  text-decoration: none;
+  grid-column: span 2;
+}
+
+.weatherBox {
+  margin-top: 16px;
+  padding: 12px;
+  background: #0d1117;
+  border-radius: 6px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    gap: var(--space-lg);
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .fullWidth,
+  .cardLink {
+    grid-column: 1;
+  }
+
+  .card {
+    padding: var(--space-md);
+  }
+
+  .card h2 {
+    font-size: 14px;
+  }
+
+  .standingsItem {
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .position {
+    width: 24px;
+    font-size: 13px;
+  }
+
+  .weatherBox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+}
