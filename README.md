@@ -2,11 +2,11 @@
 
   <img src="frontend/public/image.png" alt="F1 Combined Logo" width="180" />
 
-  # F1 COMBINED
   ### Engineering Analytics & Race Intelligence Platform
 
   An enterprise-grade Formula 1 analytics workspace delivering post-race intelligence, 2026 World Championship standings, circuit guides, and driver performance comparisons.
 
+  [![Live Deployment](https://img.shields.io/badge/Vercel-Live%20Demo-00d2be?style=for-the-badge&logo=vercel)](https://f1-combined.vercel.app/)
   [![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
   [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
@@ -14,6 +14,14 @@
   [![Firebase](https://img.shields.io/badge/Firebase-Auth%20%26%20Firestore-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
 
 </div>
+
+---
+
+## Live Deployment
+
+The platform is deployed live on **Vercel** and accessible worldwide:
+
+- 🚀 **Live Application**: [https://f1-combined.vercel.app/](https://f1-combined.vercel.app/)
 
 ---
 
