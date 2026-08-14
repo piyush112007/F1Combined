@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { HiMenu, HiX } from 'react-icons/hi';
+import { RxHamburgerMenu, RxCross2 } from 'react-icons/rx';
 import styles from '../app/layout.module.css';
 import Providers from '../app/providers';
 
@@ -28,10 +28,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       )}
 
       <nav className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
-        <div className={styles.logo}>
-          <Link href="/" className={styles.logoLink} onClick={closeSidebar}>
-            <img src="/image.png" alt="F1 Combined Logo" className={styles.logoImg} />
-          </Link>
+        <div className={styles.sidebarHeader}>
+          <div className={styles.logo}>
+            <Link href="/" className={styles.logoLink} onClick={closeSidebar}>
+              <img src="/image.png" alt="F1 Combined Logo" className={styles.logoImg} />
+            </Link>
+          </div>
+          <button
+            className={styles.closeSidebarBtn}
+            onClick={closeSidebar}
+            aria-label="Close sidebar"
+          >
+            <RxCross2 size={22} />
+          </button>
         </div>
 
         <div className={styles.navLinks}>
@@ -50,13 +59,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       <main className={styles.mainContent}>
         <header className={styles.topbar}>
-          <button
-            className={styles.menuBtn}
-            onClick={() => setSidebarOpen((prev) => !prev)}
-            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
-          >
-            {sidebarOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-          </button>
+          <div className={styles.topbarLeft}>
+            <button
+              className={styles.menuBtn}
+              onClick={() => setSidebarOpen((prev) => !prev)}
+              aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+            >
+              {sidebarOpen ? <RxCross2 size={24} /> : <RxHamburgerMenu size={24} />}
+            </button>
+            <span className={styles.mobileBrand}>F1 Combined</span>
+          </div>
           <div className={styles.userProfile}>
             <div className={styles.avatar}></div>
           </div>
