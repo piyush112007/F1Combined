@@ -21,23 +21,18 @@
   margin-bottom: var(--space-xl);
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
 }
 
-.logo h1 {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  color: var(--text-primary);
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-.badge {
-  background-color: var(--accent-red);
-  color: white;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
+.logoImg {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
 }
 
 .navLinks {

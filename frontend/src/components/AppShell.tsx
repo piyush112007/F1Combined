@@ -29,8 +29,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       <nav className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
         <div className={styles.logo}>
-          <h1>F1 Insight</h1>
-          <span className={styles.badge}>MVP</span>
+          <Link href="/" className={styles.logoLink} onClick={closeSidebar}>
+            <img src="/image.png" alt="F1 Combined Logo" className={styles.logoImg} />
+          </Link>
         </div>
 
         <div className={styles.navLinks}>
