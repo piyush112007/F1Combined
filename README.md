@@ -1,92 +1,61 @@
 <div align="center">
 
-<h1 style="font-family: 'Racing Sans One', cursive, sans-serif; font-size: 2.8rem; color: #ff2800; letter-spacing: 1px; margin-bottom: 0;">
-  F1 COMBINED
-</h1>
-<h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; margin-top: 4px; font-weight: 400;">
-  ENGINEERING ANALYTICS & RACE INTELLIGENCE PLATFORM
-</h3>
+  <img src="frontend/public/image.png" alt="F1 Combined Logo" width="180" style="margin-bottom: 16px;" />
 
-<p style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #a0a0a0; max-width: 680px; margin: 12px auto 24px auto; line-height: 1.5;">
-  An enterprise-grade Formula 1 analytics workspace delivering post-race intelligence, 2026 World Championship standings, circuit guides, and driver & constructor performance comparisons.
-</p>
+  <h1 style="font-family: 'Racing Sans One', cursive, sans-serif; font-size: 2.8rem; color: #ff2800; letter-spacing: 1px; margin-bottom: 0;">
+    F1 COMBINED
+  </h1>
+  <h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; margin-top: 4px; font-weight: 400;">
+    ENGINEERING ANALYTICS & RACE INTELLIGENCE PLATFORM
+  </h3>
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
-[![Express](https://img.shields.io/badge/Express-5.2-000000?style=for-the-badge&logo=express)](https://expressjs.com/)
-[![Firebase](https://img.shields.io/badge/Firebase-Auth%20%26%20Firestore-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+  <p style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #a0a0a0; max-width: 680px; margin: 12px auto 24px auto; line-height: 1.5;">
+    An enterprise-grade Formula 1 analytics workspace delivering post-race intelligence, 2026 World Championship standings, circuit guides, and driver performance comparisons.
+  </p>
+
+  [![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+  [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+  [![Express](https://img.shields.io/badge/Express-5.2-000000?style=for-the-badge&logo=express)](https://expressjs.com/)
+  [![Firebase](https://img.shields.io/badge/Firebase-Auth%20%26%20Firestore-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
 
 </div>
 
 ---
 
-## 🏎️ Overview & Key Features
+## Key Features
 
-Designed with the **Racing Sans One** heading typography and high-contrast dark glassmorphism styling used throughout the web application, **F1 Combined** provides an interactive platform for motorsport analysts:
-
-- 🏆 **2026 World Championships**: Live standings and points breakdowns for the World Drivers' Championship (WDC) and World Constructors' Championship (WCC).
-- 🏁 **Grand Prix Race Calendar & Weekends**: Comprehensive schedule of every race weekend, including Practice, Qualifying, Sprint, and Race classifications.
-- 👤 **Full 24-Driver Grid & Avatars**: Pick any current 2026 F1 driver headshot as your personal avatar (Norris #1, Verstappen #3, Hamilton #44, Leclerc #16, Piastri #81, Russell #63, Antonelli #12, Sainz #55, and more).
-- 🗄️ **Cloud Avatar Sync**: Selected driver avatars are automatically persisted to Firebase Cloud Firestore and user-scoped storage for seamless cross-device synchronization.
-- 🔐 **Full-Screen Authentication**: Firebase Google OAuth and Email/Password sign-in featuring confirm password matching and clean full-screen authentication routes.
-- 🛡️ **Profile Popover & Sign-Out Guard**: Glassmorphism user profile dropdown card with team badges and an interactive sign-out confirmation popup modal.
-- 🔔 **Toast Notification System**: Real-time notifications for race weekend updates with action buttons (`Watch Race Details`) and clean, professional formatting.
-- 🗺️ **Circuit Intelligence**: Detailed track dimensions, lap records, location maps, and weather conditions for all 2026 calendar circuits.
-- ⚔️ **Side-by-Side Comparison Engine**: Interactive comparison tool for driver performance stats and constructor head-to-heads.
+- ![Standings](https://img.shields.io/badge/Standings-WDC%20%26%20WCC-ff2800?style=flat-square) **2026 World Championships**: Live standings and points breakdowns for the World Drivers' Championship (WDC) and World Constructors' Championship (WCC).
+- ![Calendar](https://img.shields.io/badge/Schedule-Grand%20Prix-0090ff?style=flat-square) **Grand Prix Race Calendar & Session Results**: Schedule and classification results for all 2026 Grand Prix weekends.
+- ![Avatars](https://img.shields.io/badge/Avatars-24%20Driver%20Grid-00d2be?style=flat-square) **24-Driver Grid & Cloud Sync**: Full 2026 driver grid avatar selection synchronized to Firebase Cloud Firestore.
+- ![Tracks](https://img.shields.io/badge/Tracks-Circuit%20Maps-b33bff?style=flat-square) **Circuit Intelligence**: Track dimensions, lap records, location maps, and weather conditions for all 2026 calendar circuits.
+- ![Analytics](https://img.shields.io/badge/Analytics-Compare%20Engine-ffcc00?style=flat-square) **Performance Comparison Engine**: Interactive side-by-side driver statistics and constructor head-to-head metrics.
 
 ---
 
-## 🎨 Theme & Typography Tokens
-
-The web application utilizes a tailored design system configured in `globals.css`:
-
-```css
-:root {
-  /* Typography */
-  --font-heading: 'Racing Sans One', cursive, sans-serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
-
-  /* Palette Tokens */
-  --bg-main: #090909;        /* Dark Charcoal */
-  --bg-card: #141414;        /* Glass Card Background */
-  --accent-red: #ff2800;     /* Ferrari Red */
-  --accent-green: #00d2be;   /* Mercedes Turquoise */
-  --accent-blue: #0090ff;    /* Weather / Info Blue */
-  --accent-purple: #b33bff;  /* Fastest Sector Purple */
-}
-```
-
----
-
-## 🏗️ Architecture & Workspaces
-
-The codebase is organized as an npm monorepo with clean separation between frontend, backend API, and shared types:
+## Architecture & Tech Stack
 
 ```text
-F1Combined Workspace
+F1Combined Monorepo
 ├── frontend/             # Next.js 16 App Router Frontend (Port 3000)
-│   ├── src/app/          # Page routes (/weekends, /drivers, /constructors, /circuits, /compare, /login, /signup)
-│   ├── src/components/   # AppShell, DriverAvatarModal, Toast System
-│   ├── src/context/      # AuthContext & ToastContext
-│   └── src/utils/        # 2026 F1 Drivers Dataset & Media CDN helpers
 ├── backend/              # Node.js + Express API Backend (Port 3001)
-│   ├── src/routes/       # Express route handlers
-│   └── src/services/     # F1 Data caching & Jolpica/OpenF1 integration
 └── packages/shared/      # Shared TypeScript data models and interfaces
 ```
 
+### Stack Highlights
+- **Frontend**: Next.js 16 (Turbopack), React 19, TypeScript, CSS Modules, ECharts, TanStack Query.
+- **Backend**: Node.js, Express.js, TypeScript, Nodemon, CORS.
+- **Database & Auth**: Firebase Authentication (Google OAuth + Email/Password), Cloud Firestore.
+
 ---
 
-## ⚡ Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 - **Node.js**: v18.0.0 or higher
 - **npm**: v9.0.0 or higher
 
-### 2. Installation & Workspace Setup
-
-Clone the repository and install all monorepo dependencies:
+### 2. Installation & Setup
 
 ```bash
 # Clone repository
@@ -95,44 +64,23 @@ cd F1Combined
 
 # Install workspace dependencies
 npm install
-```
 
-### 3. Environment Configuration
-
-Create `.env.local` inside `frontend/` by copying the template file:
-
-```bash
+# Setup environment
 cp frontend/.env.example frontend/.env.local
 ```
 
-Configure your Firebase client keys in `frontend/.env.local`:
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-```
-
----
-
-## 🚀 Running the Platform
-
-To start the **Next.js Frontend** (Port 3000) and **Express Backend API** (Port 3001) concurrently:
+### 3. Running Development Server
 
 ```bash
 npm run dev
 ```
 
-Access the application in your browser at `http://localhost:3000`.
+- **Frontend**: `http://localhost:3000`
+- **Backend API**: `http://localhost:3001`
 
 ---
 
-## 🛠️ Production Build
-
-To verify TypeScript compilation and generate production builds across all workspaces:
+## Production Build
 
 ```bash
 npm run build
@@ -140,6 +88,6 @@ npm run build
 
 ---
 
-## 📄 License
+## License
 
 This repository is licensed under the MIT License.
