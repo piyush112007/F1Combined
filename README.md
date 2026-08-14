@@ -1,3 +1,14 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Racing Sans One', cursive, sans-serif !important;
+    color: #ff2800;
+    letter-spacing: 0.8px;
+  }
+</style>
+
 <div align="center">
 
   <img src="frontend/public/image.png" alt="F1 Combined Logo" width="180" style="margin-bottom: 16px;" />
@@ -23,7 +34,9 @@
 
 ---
 
-## Key Features
+<h2 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ff2800; letter-spacing: 0.8px;">
+  Key Features
+</h2>
 
 - ![Standings](https://img.shields.io/badge/Standings-WDC%20%26%20WCC-ff2800?style=flat-square) **2026 World Championships**: Live standings and points breakdowns for the World Drivers' Championship (WDC) and World Constructors' Championship (WCC).
 - ![Calendar](https://img.shields.io/badge/Schedule-Grand%20Prix-0090ff?style=flat-square) **Grand Prix Race Calendar & Session Results**: Schedule and classification results for all 2026 Grand Prix weekends.
@@ -33,7 +46,9 @@
 
 ---
 
-## Architecture & Tech Stack
+<h2 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ff2800; letter-spacing: 0.8px;">
+  Architecture & Tech Stack
+</h2>
 
 ```text
 F1Combined Monorepo
@@ -42,20 +57,30 @@ F1Combined Monorepo
 └── packages/shared/      # Shared TypeScript data models and interfaces
 ```
 
-### Stack Highlights
+<h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; font-weight: 400; letter-spacing: 0.5px; margin-top: 16px;">
+  Stack Highlights
+</h3>
+
 - **Frontend**: Next.js 16 (Turbopack), React 19, TypeScript, CSS Modules, ECharts, TanStack Query.
 - **Backend**: Node.js, Express.js, TypeScript, Nodemon, CORS.
 - **Database & Auth**: Firebase Authentication (Google OAuth + Email/Password), Cloud Firestore.
 
 ---
 
-## Getting Started
+<h2 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ff2800; letter-spacing: 0.8px;">
+  Getting Started
+</h2>
 
-### 1. Prerequisites
+<h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; font-weight: 400; letter-spacing: 0.5px;">
+  1. Prerequisites
+</h3>
+
 - **Node.js**: v18.0.0 or higher
 - **npm**: v9.0.0 or higher
 
-### 2. Installation & Setup
+<h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; font-weight: 400; letter-spacing: 0.5px;">
+  2. Installation & Setup
+</h3>
 
 ```bash
 # Clone repository
@@ -69,7 +94,9 @@ npm install
 cp frontend/.env.example frontend/.env.local
 ```
 
-### 3. Running Development Server
+<h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; font-weight: 400; letter-spacing: 0.5px;">
+  3. Running Development Server
+</h3>
 
 ```bash
 npm run dev
@@ -80,7 +107,9 @@ npm run dev
 
 ---
 
-## Production Build
+<h2 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ff2800; letter-spacing: 0.8px;">
+  Production Build
+</h2>
 
 ```bash
 npm run build
@@ -88,6 +117,8 @@ npm run build
 
 ---
 
-## License
+<h2 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ff2800; letter-spacing: 0.8px;">
+  License
+</h2>
 
 This repository is licensed under the MIT License.
