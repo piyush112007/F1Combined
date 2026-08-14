@@ -50,13 +50,18 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       <main className={styles.mainContent}>
         <header className={styles.topbar}>
-          <button
-            className={styles.menuBtn}
-            onClick={() => setSidebarOpen((prev) => !prev)}
-            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
-          >
-            {sidebarOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-          </button>
+          <div className={styles.topbarLeft}>
+            <button
+              className={styles.menuBtn}
+              onClick={() => setSidebarOpen((prev) => !prev)}
+              aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+            >
+              {sidebarOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            </button>
+            <Link href="/" className={styles.topbarLogo}>
+              <img src="/image.png" alt="F1 Combined Logo" className={styles.topbarLogoImg} />
+            </Link>
+          </div>
           <div className={styles.userProfile}>
             <div className={styles.avatar}></div>
           </div>

@@ -19,6 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/image.png" type="image/png" />
+        <link rel="shortcut icon" href="/image.png" />
+        <link rel="apple-touch-icon" href="/image.png" />
+      </head>
       <body>
         <AppShell>{children}</AppShell>
       </body>
