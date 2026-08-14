@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AppShell from "../components/AppShell";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "F1 Combined | Engineering Analytics",
@@ -25,7 +26,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/image.png" />
       </head>
       <body>
-        <AppShell>{children}</AppShell>
+        <Providers>
+          <AppShell>{children}</AppShell>
+        </Providers>
       </body>
     </html>
   );

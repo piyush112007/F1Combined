@@ -9,7 +9,7 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 700;
   margin-bottom: var(--space-xs);
 }
@@ -43,12 +43,12 @@
 }
 
 .card h2 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--accent-red);
   margin-bottom: var(--space-md);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   margin-top: 0;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .raceName {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: var(--space-xs);
