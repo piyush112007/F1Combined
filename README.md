@@ -13,9 +13,7 @@
 
   <img src="frontend/public/image.png" alt="F1 Combined Logo" width="180" style="margin-bottom: 16px;" />
 
-  <h1 style="font-family: 'Racing Sans One', cursive, sans-serif; font-size: 2.8rem; color: #ff2800; letter-spacing: 1px; margin-bottom: 0;">
-    F1 COMBINED
-  </h1>
+  
   <h3 style="font-family: 'Racing Sans One', cursive, sans-serif; color: #ffffff; margin-top: 4px; font-weight: 400;">
     ENGINEERING ANALYTICS & RACE INTELLIGENCE PLATFORM
   </h3>
