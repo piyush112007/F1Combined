@@ -102,24 +102,6 @@
   z-index: 5;
 }
 
-.topbarLeft {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.topbarLogo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.topbarLogoImg {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-}
-
 .menuBtn {
   display: none;
   background: none;
