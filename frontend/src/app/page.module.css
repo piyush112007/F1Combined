@@ -195,3 +195,150 @@
     gap: var(--space-sm);
   }
 }
+
+.driverHeader {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.driverTitleSpan {
+  margin-left: 12px;
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: normal;
+}
+
+.constructorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.constructorTitle {
+  color: #d4af37;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  margin-top: 0;
+}
+
+.driverBriefCard {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  transition: background 0.2s;
+}
+
+.driverBriefStat {
+  text-align: right;
+  margin-right: 48px;
+}
+
+.driverBriefStanding {
+  text-align: right;
+}
+
+.standingsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.predictiveGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.liveBadge,
+.sprintBadge {
+  margin-left: 12px;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.liveBadge {
+  background: linear-gradient(135deg, #ff2800, #ff5e00);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(255, 40, 0, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: live-pulse 1.5s infinite;
+}
+
+.sprintBadge {
+  background: #ff2800;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .driverHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .driverTitleSpan {
+    display: block;
+    margin-left: 0 !important;
+    margin-top: 4px;
+    font-size: 16px;
+  }
+
+  .constructorHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .constructorTitle {
+    font-size: 32px;
+  }
+
+  .driverBriefCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .driverBriefStat,
+  .driverBriefStanding {
+    text-align: left !important;
+    margin-right: 0 !important;
+  }
+
+  .standingsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .predictiveGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .predictiveGrid > div {
+    grid-column: span 1 !important;
+  }
+
+  .liveBadge,
+  .sprintBadge {
+    display: inline-flex;
+    margin-left: 0 !important;
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+}
+

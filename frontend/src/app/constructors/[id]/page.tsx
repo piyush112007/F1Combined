@@ -23,7 +23,7 @@ function DriverBriefSection({ driverId, driverStandings }: { driverId: string, d
 
   return (
     <Link href={`/drivers/${driverId}`} style={{ textDecoration: 'none', display: 'block' }}>
-      <div className={styles.card} style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '24px', padding: '24px', transition: 'background 0.2s' }}
+      <div className={`${styles.card} ${styles.driverBriefCard}`}
         onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
       >
@@ -31,7 +31,7 @@ function DriverBriefSection({ driverId, driverStandings }: { driverId: string, d
         <img 
           src={imageUrl} 
           alt={`${driver.name} ${driver.surname}`} 
-          style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)' }}
+          style={{ width: '80px', height: '80px', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)' }}
         />
       ) : (
         <div style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 'bold', color: '#ff2800', fontFamily: 'monospace' }}>
@@ -42,11 +42,11 @@ function DriverBriefSection({ driverId, driverStandings }: { driverId: string, d
         <h2 style={{ margin: 0, fontSize: '24px', color: '#c9d1d9' }}>{driver.name} {driver.surname}</h2>
         <div style={{ fontSize: '14px', color: '#8b949e', marginTop: '4px' }}>Car #{currentNumber}</div>
       </div>
-      <div style={{ textAlign: 'right', marginRight: '48px' }}>
+      <div className={styles.driverBriefStat}>
         <div style={{ color: '#8b949e', fontSize: '12px', textTransform: 'uppercase' }}>Avg Finish</div>
         <div style={{ color: '#c9d1d9', fontSize: '24px', fontWeight: 'bold' }}>{avgFinish !== '-' ? `P${avgFinish}` : '-'}</div>
       </div>
-      <div style={{ textAlign: 'right' }}>
+      <div className={styles.driverBriefStanding}>
         <div style={{ color: '#8b949e', fontSize: '12px', textTransform: 'uppercase' }}>Championship Standing</div>
         <div style={{ color: '#d4af37', fontSize: '24px', fontWeight: 'bold' }}>{standing ? `P${standing.position} (${standing.points} pts)` : '-'}</div>
       </div>
@@ -78,15 +78,15 @@ export default function ConstructorDetailsPage({ params }: { params: Promise<{ i
   return (
     <div className={styles.dashboard}>
       <header className={styles.header}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div className={styles.constructorHeader}>
           <div>
-            <h1 className={styles.title} style={{ color: '#d4af37', fontSize: '48px' }}>{teamDetails?.teamName || constructorName}</h1>
+            <h1 className={`${styles.title} ${styles.constructorTitle}`}>{teamDetails?.teamName || constructorName}</h1>
             <p className={styles.subtitle} style={{ textTransform: 'uppercase', fontSize: '18px' }}>
               {teamDetails?.teamNationality || 'Constructor'}
             </p>
           </div>
           {currentStanding && (
-            <div style={{ textAlign: 'right' }}>
+            <div className={styles.driverBriefStanding}>
               <div style={{ color: '#8b949e', fontSize: '14px', textTransform: 'uppercase', marginBottom: '8px' }}>Current Standing</div>
               <div style={{ fontSize: '48px', fontWeight: 'bold', color: currentStanding.position === '1' ? '#d4af37' : '#c9d1d9', lineHeight: 1 }}>
                 P{currentStanding.position}

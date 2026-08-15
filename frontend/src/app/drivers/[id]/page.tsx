@@ -21,7 +21,7 @@ export default function DriverDetailsPage({ params }: { params: Promise<{ id: st
   return (
     <div className={styles.dashboard}>
       <header className={styles.header}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+        <div className={styles.driverHeader}>
           {imageUrl ? (
             <div style={{
               width: '160px',
@@ -59,7 +59,7 @@ export default function DriverDetailsPage({ params }: { params: Promise<{ id: st
           <div>
             <h1 className={styles.title}>
               {driver.name} {driver.surname}
-              <span style={{ marginLeft: '12px', fontSize: '18px', color: '#8b949e', fontWeight: 'normal' }}>
+              <span className={styles.driverTitleSpan}>
                 #{currentNumber} · {driver.nationality}
               </span>
             </h1>

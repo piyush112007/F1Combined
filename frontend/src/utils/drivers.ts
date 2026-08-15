@@ -142,8 +142,8 @@ export const F1_DRIVERS: DriverAvatar[] = [
     name: 'Nico Hulkenberg',
     code: 'HUL',
     number: 27,
-    team: 'Sauber',
-    teamColor: '#52E252',
+    team: 'Audi',
+    teamColor: '#EB4526',
     headshotUrl: getDriverImageUrl('hulkenberg') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png',
   },
   {
@@ -151,8 +151,8 @@ export const F1_DRIVERS: DriverAvatar[] = [
     name: 'Gabriel Bortoleto',
     code: 'BOR',
     number: 5,
-    team: 'Sauber',
-    teamColor: '#52E252',
+    team: 'Audi',
+    teamColor: '#EB4526',
     headshotUrl: getDriverImageUrl('bortoleto') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GABBOR01_Gabriel_Bortoleto/gabbor01.png',
   },
   {
@@ -169,8 +169,8 @@ export const F1_DRIVERS: DriverAvatar[] = [
     name: 'Isack Hadjar',
     code: 'HAD',
     number: 6,
-    team: 'RB',
-    teamColor: '#6692FF',
+    team: 'Red Bull Racing',
+    teamColor: '#3671C6',
     headshotUrl: getDriverImageUrl('hadjar') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/I/ISAHAD01_Isack_Hadjar/isahad01.png',
   },
   {
@@ -178,8 +178,8 @@ export const F1_DRIVERS: DriverAvatar[] = [
     name: 'Sergio Perez',
     code: 'PER',
     number: 11,
-    team: 'Red Bull Racing',
-    teamColor: '#3671C6',
+    team: 'Cadillac',
+    teamColor: '#252525',
     headshotUrl: getDriverImageUrl('perez') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png',
   },
   {
@@ -187,8 +187,8 @@ export const F1_DRIVERS: DriverAvatar[] = [
     name: 'Franco Colapinto',
     code: 'COL',
     number: 43,
-    team: 'Williams',
-    teamColor: '#64C4FF',
+    team: 'Alpine',
+    teamColor: '#0093CC',
     headshotUrl: getDriverImageUrl('colapinto') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FRACOL01_Franco_Colapinto/fracol01.png',
   },
   {
@@ -196,8 +196,8 @@ export const F1_DRIVERS: DriverAvatar[] = [
     name: 'Valtteri Bottas',
     code: 'BOT',
     number: 77,
-    team: 'Kick Sauber',
-    teamColor: '#52E252',
+    team: 'Cadillac',
+    teamColor: '#252525',
     headshotUrl: getDriverImageUrl('bottas') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png',
   },
   {
@@ -207,7 +207,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 41,
     team: 'RB',
     teamColor: '#6692FF',
-    headshotUrl: getDriverImageUrl('lindblad') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ARVLIN01_Arvid_Lindblad/arvlin01.png',
+    headshotUrl: getDriverImageUrl('lindblad') || 'https://www.formulaonehistory.com/wp-content/uploads/2025/12/Arvid-Lindblad-F1-2026.webp',
   },
 ];
 

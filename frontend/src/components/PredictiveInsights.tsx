@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '../app/page.module.css';
+
 export default function PredictiveInsights({ circuit, date, weatherData }: { circuit: string, date: string, weatherData?: any }) {
   // Simple Mock Engine based on circuit string hashing to make it deterministic
   const isHighDeg = circuit.includes('Bahrain') || circuit.includes('Silverstone') || circuit.includes('Suzuka');
@@ -40,7 +42,7 @@ export default function PredictiveInsights({ circuit, date, weatherData }: { cir
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+    <div className={styles.predictiveGrid}>
       <div style={{ background: '#0d1117', padding: '16px', borderRadius: '6px', border: '1px solid #30363d' }}>
         <h3 style={{ color: '#ff2800', margin: '0 0 12px 0', fontSize: '14px' }}>☁️ Expected Weather</h3>
         <p style={{ color: '#c9d1d9', margin: 0, fontSize: '14px' }}>{weather}</p>

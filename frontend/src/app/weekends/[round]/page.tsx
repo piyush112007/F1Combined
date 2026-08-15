@@ -128,39 +128,12 @@ export default function RaceWeekendPage({
         <h1 className={styles.title}>
           {raceDetails.raceName} (Round {round})
           {raceDetails.hasSprint && (
-            <span
-              style={{
-                marginLeft: "12px",
-                fontSize: "14px",
-                background: "#ff2800",
-                color: "#fff",
-                padding: "4px 8px",
-                borderRadius: "4px",
-                verticalAlign: "middle",
-                fontWeight: "bold",
-              }}
-            >
+            <span className={styles.sprintBadge}>
               SPRINT WEEKEND
             </span>
           )}
           {isOngoing && (
-            <span
-              style={{
-                marginLeft: "12px",
-                fontSize: "14px",
-                background: "linear-gradient(135deg, #ff2800, #ff5e00)",
-                color: "#fff",
-                padding: "6px 12px",
-                borderRadius: "20px",
-                verticalAlign: "middle",
-                fontWeight: "bold",
-                boxShadow: "0 0 15px rgba(255, 40, 0, 0.4)",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                animation: "live-pulse 1.5s infinite",
-              }}
-            >
+            <span className={styles.liveBadge}>
               <span
                 style={{
                   width: "8px",
@@ -353,6 +326,8 @@ export default function RaceWeekendPage({
                       const isPastWinner = pastWinnerSurnames.includes(
                         normalize(driver.surname),
                       );
+                      const isP1 = index === 0;
+                      const useGoldStyle = isP1 || isPastWinner;
                       const driverImgUrl = getDriverImageUrl(driver.driverId);
                       const driverNum =
                         getDriverNumber(driver.driverId) ?? driver.number;
@@ -366,10 +341,10 @@ export default function RaceWeekendPage({
                           <div
                             style={{
                               padding: "12px",
-                              background: isPastWinner
+                              background: useGoldStyle
                                 ? "rgba(255, 215, 0, 0.05)"
                                 : "rgba(255, 255, 255, 0.05)",
-                              border: `1px solid ${isPastWinner ? "rgba(255, 215, 0, 0.5)" : "#30363d"}`,
+                              border: `1px solid ${useGoldStyle ? "rgba(255, 215, 0, 0.5)" : "#30363d"}`,
                               borderRadius: "8px",
                               display: "flex",
                               alignItems: "center",
@@ -378,18 +353,18 @@ export default function RaceWeekendPage({
                               cursor: "pointer",
                             }}
                             onMouseEnter={(e) => {
-                              e.currentTarget.style.background = isPastWinner
+                              e.currentTarget.style.background = useGoldStyle
                                 ? "rgba(255, 215, 0, 0.1)"
                                 : "rgba(255, 255, 255, 0.1)";
-                              e.currentTarget.style.borderColor = isPastWinner
+                              e.currentTarget.style.borderColor = useGoldStyle
                                 ? "#ffd700"
                                 : "#ff2800";
                             }}
                             onMouseLeave={(e) => {
-                              e.currentTarget.style.background = isPastWinner
+                              e.currentTarget.style.background = useGoldStyle
                                 ? "rgba(255, 215, 0, 0.05)"
                                 : "rgba(255, 255, 255, 0.05)";
-                              e.currentTarget.style.borderColor = isPastWinner
+                              e.currentTarget.style.borderColor = useGoldStyle
                                 ? "rgba(255, 215, 0, 0.5)"
                                 : "#30363d";
                             }}
@@ -398,7 +373,7 @@ export default function RaceWeekendPage({
                               style={{
                                 fontSize: "20px",
                                 fontWeight: "bold",
-                                color: isPastWinner ? "#ffd700" : "#ff2800",
+                                color: useGoldStyle ? "#ffd700" : "#ff2800",
                                 width: "40px",
                                 textAlign: "center",
                                 fontFamily: "monospace",
@@ -415,6 +390,7 @@ export default function RaceWeekendPage({
                                   height: "40px",
                                   borderRadius: "50%",
                                   objectFit: "cover",
+                                  objectPosition: "top",
                                   backgroundColor: "rgba(255,255,255,0.05)",
                                 }}
                               />
@@ -485,15 +461,7 @@ export default function RaceWeekendPage({
         )}
 
         <section className={styles.card} style={{ gridColumn: "span 2" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "16px",
-              marginBottom: "24px",
-            }}
-          >
+          <div className={styles.standingsHeader}>
             <h2
               style={{
                 margin: 0,
@@ -663,6 +631,7 @@ export default function RaceWeekendPage({
                     const driverId = driver.driverId || driver.id || "";
                     const driverNum =
                       getDriverNumber(driverId) ?? driver.number;
+                    const isP1 = parseInt(position, 10) === 1;
 
                     return (
                       <Link
@@ -673,12 +642,15 @@ export default function RaceWeekendPage({
                         <div
                           style={{
                             padding: "16px",
-                            background:
-                              "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)",
+                            background: isP1
+                              ? "linear-gradient(145deg, rgba(255, 215, 0, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)"
+                              : "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)",
                             backdropFilter: "blur(10px)",
                             WebkitBackdropFilter: "blur(10px)",
                             boxShadow: "0 4px 6px rgba(0,0,0,0.2)",
-                            border: "1px solid rgba(255, 255, 255, 0.05)",
+                            border: isP1
+                              ? "1px solid rgba(255, 215, 0, 0.3)"
+                              : "1px solid rgba(255, 255, 255, 0.05)",
                             borderRadius: "12px",
                             display: "flex",
                             alignItems: "center",
@@ -693,29 +665,35 @@ export default function RaceWeekendPage({
                           onMouseEnter={(e) => {
                             e.currentTarget.style.transform =
                               "translateY(-3px)";
-                            e.currentTarget.style.boxShadow =
-                              "0 8px 20px rgba(255, 40, 0, 0.15)";
-                            e.currentTarget.style.borderColor =
-                              "rgba(255, 40, 0, 0.4)";
-                            e.currentTarget.style.background =
-                              "linear-gradient(145deg, rgba(255, 40, 0, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)";
+                            e.currentTarget.style.boxShadow = isP1
+                              ? "0 8px 20px rgba(255, 215, 0, 0.25)"
+                              : "0 8px 20px rgba(255, 40, 0, 0.15)";
+                            e.currentTarget.style.borderColor = isP1
+                              ? "#ffd700"
+                              : "rgba(255, 40, 0, 0.4)";
+                            e.currentTarget.style.background = isP1
+                              ? "linear-gradient(145deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%)"
+                              : "linear-gradient(145deg, rgba(255, 40, 0, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)";
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.transform = "translateY(0)";
                             e.currentTarget.style.boxShadow =
                               "0 4px 6px rgba(0,0,0,0.2)";
-                            e.currentTarget.style.borderColor =
-                              "rgba(255, 255, 255, 0.05)";
-                            e.currentTarget.style.background =
-                              "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)";
+                            e.currentTarget.style.borderColor = isP1
+                              ? "rgba(255, 215, 0, 0.3)"
+                              : "rgba(255, 255, 255, 0.05)";
+                            e.currentTarget.style.background = isP1
+                              ? "linear-gradient(145deg, rgba(255, 215, 0, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)"
+                              : "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)";
                           }}
                         >
                           <div
                             style={{
                               fontSize: "28px",
                               fontWeight: "900",
-                              background:
-                                "linear-gradient(to right, #ff2800, #ff8c00)",
+                              background: isP1
+                                ? "linear-gradient(to right, #ffd700, #ffa500)"
+                                : "linear-gradient(to right, #ff2800, #ff8c00)",
                               WebkitBackgroundClip: "text",
                               WebkitTextFillColor: "transparent",
                               width: "45px",
