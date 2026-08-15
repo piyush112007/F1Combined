@@ -21,7 +21,7 @@
 
 The platform is deployed live on **Vercel** and accessible worldwide:
 
-- 🚀 **Live Application**: [https://f1-combined.vercel.app/](https://f1-combined.vercel.app/)
+-  **Live Application**: [https://f1-combined.vercel.app/](https://f1-combined.vercel.app/)
 
 ---
 
