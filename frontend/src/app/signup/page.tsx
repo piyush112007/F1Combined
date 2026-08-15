@@ -144,6 +144,7 @@ export default function SignupPage() {
                 src={driverAvatar.headshotUrl}
                 alt={driverAvatar.name}
                 className={styles.avatarHeadshot}
+                style={{ backgroundColor: driverAvatar.teamColor, borderColor: driverAvatar.contrastColor }}
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
                 }}

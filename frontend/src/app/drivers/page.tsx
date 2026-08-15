@@ -3,6 +3,7 @@
 import styles from '../page.module.css';
 import { useDriverStandings } from '../../api';
 import { getDriverImageUrl, getDriverNumber } from '../../utils/driverData';
+import { getDriverTeamColor, getDriverBorderColor } from '../../utils/drivers';
 import Link from 'next/link';
 
 export default function DriversPage() {
@@ -45,7 +46,7 @@ export default function DriversPage() {
                         <td style={{ padding: '12px 8px', color: '#c9d1d9' }}>
                           <Link href={`/drivers/${driverId}`} style={{ color: st.position === '1' ? '#d4af37' : '#ffffff', textDecoration: 'none', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '12px' }}>
                             {imageUrl ? (
-                              <img src={imageUrl} alt={`${st.Driver.givenName} ${st.Driver.familyName}`} style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', backgroundColor: 'rgba(255,255,255,0.05)' }} />
+                              <img src={imageUrl} alt={`${st.Driver.givenName} ${st.Driver.familyName}`} style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', backgroundColor: getDriverTeamColor(driverId), border: `2px solid ${getDriverBorderColor(driverId)}` }} />
                             ) : (
                               <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#8b949e', fontFamily: 'monospace' }}>
                                 {st.Driver.code || '-'}

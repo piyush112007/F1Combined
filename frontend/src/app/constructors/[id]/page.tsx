@@ -4,6 +4,7 @@ import { use } from 'react';
 import styles from '../../page.module.css';
 import { useF1ApiDrivers, useF1ApiDriver, useConstructorStandings, useDriverStandings } from '../../../api';
 import { getDriverImageUrl, getDriverNumber } from '../../../utils/driverData';
+import { getDriverTeamColor, getDriverBorderColor } from '../../../utils/drivers';
 import Link from 'next/link';
 
 function DriverBriefSection({ driverId, driverStandings }: { driverId: string, driverStandings: any[] }) {
@@ -31,10 +32,10 @@ function DriverBriefSection({ driverId, driverStandings }: { driverId: string, d
         <img 
           src={imageUrl} 
           alt={`${driver.name} ${driver.surname}`} 
-          style={{ width: '80px', height: '80px', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)' }}
+          style={{ width: '80px', height: '80px', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', backgroundColor: getDriverTeamColor(driverId), border: `2.5px solid ${getDriverBorderColor(driverId)}` }}
         />
       ) : (
-        <div style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 'bold', color: '#ff2800', fontFamily: 'monospace' }}>
+        <div style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 'bold', color: '#ff2800', fontFamily: 'monospace', border: `2.5px solid ${getDriverBorderColor(driverId)}` }}>
           {currentNumber || '-'}
         </div>
       )}

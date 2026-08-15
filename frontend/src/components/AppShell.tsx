@@ -216,13 +216,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <button
               className={styles.avatarBtn}
               onClick={() => setUserDropdownOpen((prev) => !prev)}
-              style={{ borderColor: driverAvatar.teamColor }}
+              style={{ borderColor: driverAvatar.contrastColor }}
               aria-label="User profile menu"
             >
               <img
                 src={driverAvatar.headshotUrl}
                 alt={driverAvatar.name}
                 className={styles.avatar}
+                style={{ backgroundColor: driverAvatar.teamColor, border: '1.5px solid', borderColor: driverAvatar.contrastColor }}
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
                   const parent = (e.target as HTMLElement).parentElement;
@@ -241,7 +242,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <div className={styles.dropdownDriverBanner}>
                   <div
                     className={styles.dropdownHeadshotWrapper}
-                    style={{ borderColor: driverAvatar.teamColor }}
+                    style={{ borderColor: driverAvatar.contrastColor, backgroundColor: driverAvatar.teamColor }}
                   >
                     <img
                       src={driverAvatar.headshotUrl}

@@ -3,11 +3,12 @@
 import { use } from 'react';
 import styles from '../../page.module.css';
 import { useF1ApiDriver } from '../../../api';
-import { getDriverImageUrl, getDriverNumber } from '../../../utils/driverData';
+import { getDriverImageUrl, getDriverNumber, normalizeId } from '../../../utils/driverData';
+import { getDriverTeamColor, getDriverBorderColor } from '../../../utils/drivers';
 
 export default function DriverDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
-  const driverId = resolvedParams.id;
+  const driverId = normalizeId(resolvedParams.id);
   
   const { data, isLoading } = useF1ApiDriver(driverId);
   
@@ -28,8 +29,8 @@ export default function DriverDetailsPage({ params }: { params: Promise<{ id: st
               height: '160px',
               borderRadius: '16px',
               overflow: 'hidden',
-              backgroundColor: 'rgba(255,255,255,0.05)',
-              border: '2px solid rgba(255,40,0,0.3)',
+              backgroundColor: getDriverTeamColor(driverId),
+              border: `3px solid ${getDriverBorderColor(driverId)}`,
               flexShrink: 0,
             }}>
               <img 
@@ -44,7 +45,7 @@ export default function DriverDetailsPage({ params }: { params: Promise<{ id: st
               height: '160px', 
               borderRadius: '16px', 
               backgroundColor: 'rgba(255,255,255,0.05)',
-              border: '2px solid rgba(255,40,0,0.3)',
+              border: `3px solid ${getDriverBorderColor(driverId)}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

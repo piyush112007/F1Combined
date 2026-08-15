@@ -17,6 +17,7 @@ import {
 } from "../../../api";
 import PredictiveInsights from "../../../components/PredictiveInsights";
 import { getDriverImageUrl, getDriverNumber } from "../../../utils/driverData";
+import { getDriverTeamColor, getDriverBorderColor } from "../../../utils/drivers";
 
 type SessionKey =
   | "fp1"
@@ -391,7 +392,8 @@ export default function RaceWeekendPage({
                                   borderRadius: "50%",
                                   objectFit: "cover",
                                   objectPosition: "top",
-                                  backgroundColor: "rgba(255,255,255,0.05)",
+                                  backgroundColor: getDriverTeamColor(driver.driverId),
+                                  border: `2px solid ${getDriverBorderColor(driver.driverId)}`,
                                 }}
                               />
                             ) : (
@@ -401,6 +403,7 @@ export default function RaceWeekendPage({
                                   height: "40px",
                                   borderRadius: "50%",
                                   backgroundColor: "rgba(255,255,255,0.05)",
+                                  border: `2px solid ${getDriverBorderColor(driver.driverId)}`,
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "center",

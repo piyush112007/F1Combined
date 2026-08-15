@@ -41,7 +41,7 @@ const DRIVER_DATA: Record<string, DriverImageEntry> = {
 
 const F1_MEDIA_BASE = 'https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026';
 
-function normalizeId(driverId: string): string {
+export function normalizeId(driverId: string): string {
   if (!driverId) return '';
   const clean = driverId.toLowerCase().replace(/_/g, '').replace(/-/g, '');
   if (clean.includes('lindblad')) return 'lindblad';

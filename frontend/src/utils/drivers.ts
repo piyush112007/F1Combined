@@ -1,4 +1,4 @@
-import { getDriverImageUrl } from './driverData';
+import { getDriverImageUrl, normalizeId } from './driverData';
 
 export interface DriverAvatar {
   id: string;
@@ -7,6 +7,7 @@ export interface DriverAvatar {
   number: number;
   team: string;
   teamColor: string;
+  contrastColor: string;
   headshotUrl: string;
 }
 
@@ -18,6 +19,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 1,
     team: 'McLaren',
     teamColor: '#FF8000',
+    contrastColor: '#FFD700',
     headshotUrl: getDriverImageUrl('norris') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png',
   },
   {
@@ -27,6 +29,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 3,
     team: 'Red Bull Racing',
     teamColor: '#3671C6',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('max_verstappen') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png',
   },
   {
@@ -36,6 +39,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 81,
     team: 'McLaren',
     teamColor: '#FF8000',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('piastri') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png',
   },
   {
@@ -45,6 +49,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 44,
     team: 'Ferrari',
     teamColor: '#E80020',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('hamilton') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png',
   },
   {
@@ -54,6 +59,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 16,
     team: 'Ferrari',
     teamColor: '#E80020',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('leclerc') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png',
   },
   {
@@ -63,6 +69,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 63,
     team: 'Mercedes',
     teamColor: '#27F4D2',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('russell') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png',
   },
   {
@@ -72,6 +79,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 12,
     team: 'Mercedes',
     teamColor: '#27F4D2',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('antonelli') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ANDANT01_Andrea%20Kimi_Antonelli/andant01.png',
   },
   {
@@ -81,6 +89,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 55,
     team: 'Williams',
     teamColor: '#64C4FF',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('sainz') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png',
   },
   {
@@ -90,6 +99,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 23,
     team: 'Williams',
     teamColor: '#64C4FF',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('albon') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png',
   },
   {
@@ -99,6 +109,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 14,
     team: 'Aston Martin',
     teamColor: '#229971',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('alonso') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png',
   },
   {
@@ -108,6 +119,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 18,
     team: 'Aston Martin',
     teamColor: '#229971',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('stroll') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png',
   },
   {
@@ -117,6 +129,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 10,
     team: 'Alpine',
     teamColor: '#0093CC',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('gasly') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png',
   },
   {
@@ -126,6 +139,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 31,
     team: 'Haas',
     teamColor: '#B6BABD',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('ocon') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png',
   },
   {
@@ -135,6 +149,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 87,
     team: 'Haas',
     teamColor: '#B6BABD',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('bearman') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OLIBEA01_Oliver_Bearman/olibea01.png',
   },
   {
@@ -144,6 +159,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 27,
     team: 'Audi',
     teamColor: '#EB4526',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('hulkenberg') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png',
   },
   {
@@ -153,6 +169,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 5,
     team: 'Audi',
     teamColor: '#EB4526',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('bortoleto') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GABBOR01_Gabriel_Bortoleto/gabbor01.png',
   },
   {
@@ -162,6 +179,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 30,
     team: 'RB',
     teamColor: '#6692FF',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('lawson') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LIALAW01_Liam_Lawson/lialaw01.png',
   },
   {
@@ -171,6 +189,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 6,
     team: 'Red Bull Racing',
     teamColor: '#3671C6',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('hadjar') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/I/ISAHAD01_Isack_Hadjar/isahad01.png',
   },
   {
@@ -180,6 +199,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 11,
     team: 'Cadillac',
     teamColor: '#252525',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('perez') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png',
   },
   {
@@ -189,6 +209,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 43,
     team: 'Alpine',
     teamColor: '#0093CC',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('colapinto') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FRACOL01_Franco_Colapinto/fracol01.png',
   },
   {
@@ -198,6 +219,7 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 77,
     team: 'Cadillac',
     teamColor: '#252525',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('bottas') || 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png',
   },
   {
@@ -207,19 +229,20 @@ export const F1_DRIVERS: DriverAvatar[] = [
     number: 41,
     team: 'RB',
     teamColor: '#6692FF',
+    contrastColor: '#ffffff',
     headshotUrl: getDriverImageUrl('lindblad') || 'https://www.formulaonehistory.com/wp-content/uploads/2025/12/Arvid-Lindblad-F1-2026.webp',
   },
 ];
 
 export function getDriverById(id: string): DriverAvatar {
   if (!id) return F1_DRIVERS[0];
-  const norm = id.toLowerCase().replace(/_/g, '');
+  const normalized = normalizeId(id);
   return (
     F1_DRIVERS.find(
       (d) =>
-        d.id === id ||
-        d.id.replace(/_/g, '') === norm ||
-        d.code.toLowerCase() === norm
+        d.id === normalized ||
+        d.id.toLowerCase() === normalized.toLowerCase() ||
+        d.code.toLowerCase() === normalized.toLowerCase()
     ) || F1_DRIVERS[0]
   );
 }
@@ -227,4 +250,14 @@ export function getDriverById(id: string): DriverAvatar {
 export function getDriverAvatarUrl(driver: DriverAvatar | null | undefined): string {
   if (!driver) return F1_DRIVERS[0].headshotUrl;
   return driver.headshotUrl;
+}
+
+export function getDriverTeamColor(driverId: string): string {
+  const driver = getDriverById(driverId);
+  return driver ? driver.teamColor : '#21262d';
+}
+
+export function getDriverBorderColor(driverId: string): string {
+  const driver = getDriverById(driverId);
+  return driver ? driver.contrastColor : '#30363d';
 }

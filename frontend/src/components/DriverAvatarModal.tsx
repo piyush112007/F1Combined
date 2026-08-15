@@ -38,7 +38,7 @@ export default function DriverAvatarModal() {
                 className={`${styles.card} ${isSelected ? styles.activeCard : ''}`}
                 onClick={() => handleSelect(driver)}
               >
-                <div className={styles.avatarWrapper}>
+                <div className={styles.avatarWrapper} style={{ backgroundColor: driver.teamColor, borderColor: driver.contrastColor }}>
                   <img
                     src={driver.headshotUrl}
                     alt={driver.name}
