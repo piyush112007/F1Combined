@@ -4,7 +4,20 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { RxHamburgerMenu, RxCross2 } from 'react-icons/rx';
-import { FiLogOut, FiUserCheck } from 'react-icons/fi';
+import {
+  FiLogOut,
+  FiUserCheck,
+  FiArrowLeft,
+  FiArrowRight,
+  FiCalendar
+} from 'react-icons/fi';
+import {
+  GiSpanner,
+  GiFullMotorcycleHelmet,
+  GiCheckeredFlag,
+  GiSpeedometer,
+  GiCrossedSwords
+} from 'react-icons/gi';
 import styles from '../app/layout.module.css';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
@@ -12,18 +25,47 @@ import { useLatestWeekend, useSchedule } from '../api';
 import DriverAvatarModal from './DriverAvatarModal';
 
 const NAV_ITEMS = [
-  { href: '/', label: 'Dashboard' },
-  { href: '/weekends', label: 'Weekends' },
-  { href: '/drivers', label: 'Drivers' },
-  { href: '/constructors', label: 'Constructors' },
-  { href: '/circuits', label: 'Circuits' },
-  { href: '/compare', label: 'Compare' },
+  { href: '/', label: 'Dashboard', icon: GiSpeedometer },
+  { href: '/weekends', label: 'Weekends', icon: FiCalendar },
+  { href: '/drivers', label: 'Drivers', icon: GiFullMotorcycleHelmet },
+  { href: '/constructors', label: 'Constructors', icon: GiSpanner },
+  { href: '/circuits', label: 'Circuits (Coming Soon)', icon: GiCheckeredFlag },
+  { href: '/compare', label: 'Compare (Coming Soon)', icon: GiCrossedSwords },
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  // Load sidebar collapsed state from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sidebar_collapsed');
+      if (saved === 'true') {
+        setSidebarCollapsed(true);
+      }
+    }
+  }, []);
+
+  // Trigger resize event after transition ends to make pages/charts responsive
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('resize'));
+      }
+    }, 320);
+    return () => clearTimeout(timer);
+  }, [sidebarCollapsed]);
+
+  const toggleSidebarCollapsed = () => {
+    setSidebarCollapsed((prev) => {
+      const next = !prev;
+      localStorage.setItem('sidebar_collapsed', String(next));
+      return next;
+    });
+  };
   const pathname = usePathname();
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -157,11 +199,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className={styles.overlay} onClick={closeSidebar} aria-hidden="true" />
       )}
 
-      <nav className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+      <nav className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''} ${sidebarCollapsed ? styles.sidebarCollapsed : ''}`}>
         <div className={styles.sidebarHeader}>
           <div className={styles.logo}>
             <Link href="/" className={styles.logoLink} onClick={closeSidebar}>
-              <img src="/image.png" alt="F1 Combined Logo" className={styles.logoImg} />
+              <img src="/image.png" alt="F1 Combined Logo" className={`${styles.logoImg} ${styles.logoFull}`} />
+              <img src="/logocollapsed.png" alt="F1 Combined Logo" className={`${styles.logoImg} ${styles.logoCollapsed}`} />
             </Link>
           </div>
           <button
@@ -176,6 +219,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className={styles.navLinks}>
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+            const Icon = item.icon;
             return (
               <Link
                 key={item.href}
@@ -183,18 +227,35 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 className={styles.navLink}
                 data-active={isActive}
                 onClick={closeSidebar}
+                title={sidebarCollapsed ? item.label : undefined}
               >
-                <span>{item.label}</span>
+                <Icon className={styles.navIcon} size={18} />
+                <span className={styles.navLabel}>{item.label}</span>
               </Link>
             );
           })}
         </div>
 
         <div className={styles.navFooter}>
-          <button className={styles.settingsBtn} onClick={openAvatarModal}>
-            <span>Driver Avatar</span>
+          <button
+            className={styles.settingsBtn}
+            onClick={openAvatarModal}
+            title={sidebarCollapsed ? "Driver Avatar" : undefined}
+          >
+            <FiUserCheck size={16} className={styles.navIcon} />
+            <span className={styles.navLabel}>Driver Avatar</span>
           </button>
         </div>
+
+        {/* Floating collapse button on the right border */}
+        <button
+          className={styles.collapseBtn}
+          onClick={toggleSidebarCollapsed}
+          aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {sidebarCollapsed ? <FiArrowRight size={16} /> : <FiArrowLeft size={16} />}
+        </button>
       </nav>
 
       <main className={styles.mainContent}>

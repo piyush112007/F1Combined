@@ -337,7 +337,7 @@ export default function RaceWeekendPage({
                         <Link
                           href={`/drivers/${driver.driverId}`}
                           key={driver.driverId}
-                          style={{ textDecoration: "none" }}
+                          style={{ textDecoration: "none", display: "flex" }}
                         >
                           <div
                             style={{
@@ -352,6 +352,7 @@ export default function RaceWeekendPage({
                               gap: "12px",
                               transition: "all 0.2s ease",
                               cursor: "pointer",
+                              width: "100%",
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.background = useGoldStyle
@@ -394,6 +395,7 @@ export default function RaceWeekendPage({
                                   objectPosition: "top",
                                   backgroundColor: getDriverTeamColor(driver.driverId),
                                   border: `2px solid ${getDriverBorderColor(driver.driverId)}`,
+                                  flexShrink: 0,
                                 }}
                               />
                             ) : (
@@ -463,328 +465,349 @@ export default function RaceWeekendPage({
           </section>
         )}
 
-        <section className={styles.card} style={{ gridColumn: "span 2" }}>
-          <div className={styles.standingsHeader}>
-            <h2
-              style={{
-                margin: 0,
-                fontSize: "24px",
-                background: "linear-gradient(to right, #ffffff, #8b949e)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Session Standings
-            </h2>
-            <div
-              style={{
-                display: "flex",
-                gap: "10px",
-                overflowX: "visible",
-                paddingBottom: "4px",
-                scrollbarWidth: "none",
-                flexWrap: "wrap",
-                rowGap: "10px",
-              }}
-            >
-              {sessionTabs.map((sessionName) => {
-                const sessionState = getSessionState(sessionName);
-                const showStatusPill = !isCompleted;
+        {!isUpcoming && (
+          <section className={styles.card} style={{ gridColumn: "span 2" }}>
+            <div className={styles.standingsHeader}>
+              <h2
+                style={{
+                  margin: 0,
+                  fontSize: "24px",
+                  background: "linear-gradient(to right, #ffffff, #8b949e)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Session Standings
+              </h2>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  overflowX: "visible",
+                  paddingBottom: "4px",
+                  scrollbarWidth: "none",
+                  flexWrap: "wrap",
+                  rowGap: "10px",
+                }}
+              >
+                {sessionTabs.map((sessionName) => {
+                  const sessionState = getSessionState(sessionName);
+                  const showStatusPill = !isCompleted;
 
-                return (
-                  <button
-                    key={sessionName}
-                    onClick={() => setSelectedSession(sessionName)}
-                    style={{
-                      padding: "10px 20px",
-                      background:
-                        selectedSession === sessionName
-                          ? "linear-gradient(135deg, #ff2800, #ff5e00)"
-                          : "rgba(255, 255, 255, 0.03)",
-                      color:
-                        selectedSession === sessionName ? "#fff" : "#8b949e",
-                      border: "none",
-                      borderRadius: "20px",
-                      cursor: "pointer",
-                      fontWeight: "700",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      fontSize: "13px",
-                      boxShadow:
-                        selectedSession === sessionName
-                          ? "0 4px 15px rgba(255, 40, 0, 0.4)"
-                          : "none",
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                      flexShrink: 0,
-                      opacity: sessionState === "upcoming" ? 0.72 : 1,
-                    }}
-                    title={
-                      sessionState === "upcoming"
-                        ? "Yet to happen"
-                        : sessionState === "ongoing"
-                          ? "Live session"
-                          : "Completed session"
-                    }
-                    onMouseEnter={(e) => {
-                      if (selectedSession !== sessionName) {
-                        e.currentTarget.style.background =
-                          "rgba(255, 255, 255, 0.08)";
-                        e.currentTarget.style.color = "#fff";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (selectedSession !== sessionName) {
-                        e.currentTarget.style.background =
-                          "rgba(255, 255, 255, 0.03)";
-                        e.currentTarget.style.color = "#8b949e";
-                      }
-                    }}
-                  >
-                    <span
+                  return (
+                    <button
+                      key={sessionName}
+                      onClick={() => setSelectedSession(sessionName)}
                       style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "8px",
+                        padding: "10px 20px",
+                        background:
+                          selectedSession === sessionName
+                            ? "linear-gradient(135deg, #ff2800, #ff5e00)"
+                            : "rgba(255, 255, 255, 0.03)",
+                        color:
+                          selectedSession === sessionName ? "#fff" : "#8b949e",
+                        border: "none",
+                        borderRadius: "20px",
+                        cursor: "pointer",
+                        fontWeight: "700",
+                        textTransform: "uppercase",
+                        letterSpacing: "1px",
+                        fontSize: "13px",
+                        boxShadow:
+                          selectedSession === sessionName
+                            ? "0 4px 15px rgba(255, 40, 0, 0.4)"
+                            : "none",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        flexShrink: 0,
+                        opacity: sessionState === "upcoming" ? 0.72 : 1,
+                      }}
+                      title={
+                        sessionState === "upcoming"
+                          ? "Yet to happen"
+                          : sessionState === "ongoing"
+                            ? "Live session"
+                            : "Completed session"
+                      }
+                      onMouseEnter={(e) => {
+                        if (selectedSession !== sessionName) {
+                          e.currentTarget.style.background =
+                            "rgba(255, 255, 255, 0.08)";
+                          e.currentTarget.style.color = "#fff";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (selectedSession !== sessionName) {
+                          e.currentTarget.style.background =
+                            "rgba(255, 255, 255, 0.03)";
+                          e.currentTarget.style.color = "#8b949e";
+                        }
                       }}
                     >
-                      {getSessionLabel(sessionName)}
-                      {showStatusPill && (
-                        <span
-                          style={{
-                            fontSize: "11px",
-                            padding: "3px 8px",
-                            borderRadius: "999px",
-                            background:
-                              sessionState === "ongoing"
-                                ? "rgba(255, 40, 0, 0.18)"
-                                : sessionState === "completed"
-                                  ? "rgba(63, 185, 80, 0.16)"
-                                  : "rgba(210, 153, 34, 0.18)",
-                            color:
-                              sessionState === "ongoing"
-                                ? "#ff8b7a"
-                                : sessionState === "completed"
-                                  ? "#7ee787"
-                                  : "#f2cc60",
-                            textTransform: "none",
-                            letterSpacing: "0.2px",
-                          }}
-                        >
-                          {sessionState === "ongoing"
-                            ? "Live"
-                            : sessionState === "completed"
-                              ? "Done"
-                              : "Upcoming"}
-                        </span>
-                      )}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className={styles.cardContent}>
-            {selectedSessionState === "upcoming" ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "40px",
-                }}
-              >
-                <p style={{ color: "#d29922" }}>
-                  This session is yet to happen.
-                </p>
-              </div>
-            ) : isSessionStandingsLoading ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "40px",
-                }}
-              >
-                <p style={{ color: "#8b949e", animation: "pulse 2s infinite" }}>
-                  Loading session data...
-                </p>
-              </div>
-            ) : sessionStandings && sessionStandings.length > 0 ? (
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                  gap: "16px",
-                }}
-              >
-                {sessionStandings
-                  .slice(0, 22)
-                  .map((item: any, index: number) => {
-                    const driver = item.driver || {};
-                    const team = item.team || {};
-                    const position =
-                      item.position || item.gridPosition || index + 1;
-                    const timeOrStatus =
-                      item.time ||
-                      item.status ||
-                      item.q3 ||
-                      item.q2 ||
-                      item.q1 ||
-                      "-";
-                    const driverId = driver.driverId || driver.id || "";
-                    const driverNum =
-                      getDriverNumber(driverId) ?? driver.number;
-                    const isP1 = parseInt(position, 10) === 1;
-
-                    return (
-                      <Link
-                        href={`/drivers/${driver.driverId || driver.id}`}
-                        key={index}
-                        style={{ textDecoration: "none" }}
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
                       >
-                        <div
-                          style={{
-                            padding: "16px",
-                            background: isP1
-                              ? "linear-gradient(145deg, rgba(255, 215, 0, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)"
-                              : "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)",
-                            backdropFilter: "blur(10px)",
-                            WebkitBackdropFilter: "blur(10px)",
-                            boxShadow: "0 4px 6px rgba(0,0,0,0.2)",
-                            border: isP1
-                              ? "1px solid rgba(255, 215, 0, 0.3)"
-                              : "1px solid rgba(255, 255, 255, 0.05)",
-                            borderRadius: "12px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "16px",
-                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                            cursor: "pointer",
-                            position: "relative",
-                            overflow: "hidden",
-                            height: "100%",
-                            boxSizing: "border-box",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.transform =
-                              "translateY(-3px)";
-                            e.currentTarget.style.boxShadow = isP1
-                              ? "0 8px 20px rgba(255, 215, 0, 0.25)"
-                              : "0 8px 20px rgba(255, 40, 0, 0.15)";
-                            e.currentTarget.style.borderColor = isP1
-                              ? "#ffd700"
-                              : "rgba(255, 40, 0, 0.4)";
-                            e.currentTarget.style.background = isP1
-                              ? "linear-gradient(145deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%)"
-                              : "linear-gradient(145deg, rgba(255, 40, 0, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = "translateY(0)";
-                            e.currentTarget.style.boxShadow =
-                              "0 4px 6px rgba(0,0,0,0.2)";
-                            e.currentTarget.style.borderColor = isP1
-                              ? "rgba(255, 215, 0, 0.3)"
-                              : "rgba(255, 255, 255, 0.05)";
-                            e.currentTarget.style.background = isP1
-                              ? "linear-gradient(145deg, rgba(255, 215, 0, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)"
-                              : "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)";
-                          }}
+                        {getSessionLabel(sessionName)}
+                        {showStatusPill && (
+                          <span
+                            style={{
+                              fontSize: "11px",
+                              padding: "3px 8px",
+                              borderRadius: "999px",
+                              background:
+                                sessionState === "ongoing"
+                                  ? "rgba(255, 40, 0, 0.18)"
+                                  : sessionState === "completed"
+                                    ? "rgba(63, 185, 80, 0.16)"
+                                    : "rgba(210, 153, 34, 0.18)",
+                              color:
+                                sessionState === "ongoing"
+                                  ? "#ff8b7a"
+                                  : sessionState === "completed"
+                                    ? "#7ee787"
+                                    : "#f2cc60",
+                              textTransform: "none",
+                              letterSpacing: "0.2px",
+                            }}
+                          >
+                            {sessionState === "ongoing"
+                              ? "Live"
+                              : sessionState === "completed"
+                                ? "Done"
+                                : "Upcoming"}
+                          </span>
+                        )}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className={styles.cardContent}>
+              {selectedSessionState === "upcoming" ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "40px",
+                  }}
+                >
+                  <p style={{ color: "#d29922" }}>
+                    This session is yet to happen.
+                  </p>
+                </div>
+              ) : isSessionStandingsLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "40px",
+                  }}
+                >
+                  <p style={{ color: "#8b949e", animation: "pulse 2s infinite" }}>
+                    Loading session data...
+                  </p>
+                </div>
+              ) : sessionStandings && sessionStandings.length > 0 ? (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                    gap: "16px",
+                  }}
+                >
+                  {sessionStandings
+                    .slice(0, 22)
+                    .map((item: any, index: number) => {
+                      const driver = item.driver || {};
+                      const team = item.team || {};
+                      const position =
+                        item.position || item.gridPosition || index + 1;
+                      const timeOrStatus =
+                        item.time ||
+                        item.status ||
+                        item.q3 ||
+                        item.q2 ||
+                        item.q1 ||
+                        "-";
+                      const driverId = driver.driverId || driver.id || "";
+                      const driverNum =
+                        getDriverNumber(driverId) ?? driver.number;
+                      const isP1 = parseInt(position, 10) === 1;
+
+                      return (
+                        <Link
+                          href={`/drivers/${driver.driverId || driver.id}`}
+                          key={index}
+                          style={{ textDecoration: "none" }}
                         >
                           <div
                             style={{
-                              fontSize: "28px",
-                              fontWeight: "900",
+                              padding: "16px",
                               background: isP1
-                                ? "linear-gradient(to right, #ffd700, #ffa500)"
-                                : "linear-gradient(to right, #ff2800, #ff8c00)",
-                              WebkitBackgroundClip: "text",
-                              WebkitTextFillColor: "transparent",
-                              width: "45px",
-                              textAlign: "center",
-                              fontFamily: "monospace",
-                              fontStyle: "italic",
-                              lineHeight: "1",
-                              flexShrink: 0,
-                            }}
-                          >
-                            {position}
-                          </div>
-
-                          <div
-                            style={{
+                                ? "linear-gradient(145deg, rgba(255, 215, 0, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)"
+                                : "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)",
+                              backdropFilter: "blur(10px)",
+                              WebkitBackdropFilter: "blur(10px)",
+                              boxShadow: "0 4px 6px rgba(0,0,0,0.2)",
+                              border: isP1
+                                ? "1px solid rgba(255, 215, 0, 0.3)"
+                                : "1px solid rgba(255, 255, 255, 0.05)",
+                              borderRadius: "12px",
                               display: "flex",
-                              flexDirection: "column",
-                              flex: 1,
-                              zIndex: 1,
-                              minWidth: 0,
+                              alignItems: "center",
+                              gap: "16px",
+                              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                              cursor: "pointer",
+                              position: "relative",
+                              overflow: "hidden",
+                              height: "100%",
+                              boxSizing: "border-box",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.transform =
+                                "translateY(-3px)";
+                              e.currentTarget.style.boxShadow = isP1
+                                ? "0 8px 20px rgba(255, 215, 0, 0.25)"
+                                : "0 8px 20px rgba(255, 40, 0, 0.15)";
+                              e.currentTarget.style.borderColor = isP1
+                                ? "#ffd700"
+                                : "rgba(255, 40, 0, 0.4)";
+                              e.currentTarget.style.background = isP1
+                                ? "linear-gradient(145deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%)"
+                                : "linear-gradient(145deg, rgba(255, 40, 0, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)";
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.transform = "translateY(0)";
+                              e.currentTarget.style.boxShadow =
+                                "0 4px 6px rgba(0,0,0,0.2)";
+                              e.currentTarget.style.borderColor = isP1
+                                ? "rgba(255, 215, 0, 0.3)"
+                                : "rgba(255, 255, 255, 0.05)";
+                              e.currentTarget.style.background = isP1
+                                ? "linear-gradient(145deg, rgba(255, 215, 0, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)"
+                                : "linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)";
                             }}
                           >
-                            <span
+                            <div
                               style={{
-                                color: "#ffffff",
-                                fontWeight: "700",
-                                fontSize: "15px",
-                                letterSpacing: "0.5px",
-                                whiteSpace: "nowrap",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
+                                fontSize: "28px",
+                                fontWeight: "900",
+                                background: isP1
+                                  ? "linear-gradient(to right, #ffd700, #ffa500)"
+                                  : "linear-gradient(to right, #ff2800, #ff8c00)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                width: "45px",
+                                textAlign: "center",
+                                fontFamily: "monospace",
+                                fontStyle: "italic",
+                                lineHeight: "1",
+                                flexShrink: 0,
                               }}
                             >
-                              {driver.name}{" "}
-                              {driver.surname || driver.familyName}
-                            </span>
-                            <span
+                              {position}
+                            </div>
+
+                            <div
                               style={{
-                                color: "#8b949e",
-                                fontSize: "12px",
-                                textTransform: "uppercase",
-                                marginTop: "2px",
-                                letterSpacing: "0.5px",
+                                display: "flex",
+                                flexDirection: "column",
+                                flex: 1,
+                                zIndex: 1,
+                                minWidth: 0,
                               }}
                             >
-                              {team.teamName || team.name || "-"}{" "}
                               <span
-                                style={{ color: "#ff2800", fontWeight: "bold" }}
+                                style={{
+                                  color: "#ffffff",
+                                  fontWeight: "700",
+                                  fontSize: "15px",
+                                  letterSpacing: "0.5px",
+                                  whiteSpace: "nowrap",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
                               >
-                                #{driverNum || "-"}
+                                {driver.name}{" "}
+                                <span style={{ textTransform: "uppercase" }}>
+                                  {driver.surname}
+                                </span>
                               </span>
-                            </span>
+                              <span
+                                style={{
+                                  color: "#8b949e",
+                                  fontSize: "12px",
+                                  marginTop: "4px",
+                                  textTransform: "uppercase",
+                                  fontWeight: "bold",
+                                  letterSpacing: "0.5px",
+                                }}
+                              >
+                                {team.name}
+                              </span>
+                            </div>
+
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-end",
+                                zIndex: 1,
+                                flexShrink: 0,
+                              }}
+                            >
+                              <div
+                                style={{
+                                  fontSize: "12px",
+                                  fontWeight: "bold",
+                                  color: "#ff2800",
+                                  fontFamily: "monospace",
+                                }}
+                              >
+                                #{driverNum}
+                              </div>
+                              <div
+                                style={{
+                                  marginTop: "4px",
+                                  fontSize: "12px",
+                                  color: "#8b949e",
+                                  fontWeight: "600",
+                                  background: "rgba(0,0,0,0.3)",
+                                  padding: "4px 8px",
+                                  borderRadius: "6px",
+                                  border: "1px solid rgba(255,255,255,0.05)",
+                                  flexShrink: 0,
+                                }}
+                              >
+                                {timeOrStatus}
+                              </div>
+                            </div>
                           </div>
-                          <div
-                            style={{
-                              color: "#c9d1d9",
-                              fontSize: "14px",
-                              fontFamily: "monospace",
-                              fontWeight: "600",
-                              background: "rgba(0,0,0,0.3)",
-                              padding: "4px 8px",
-                              borderRadius: "6px",
-                              border: "1px solid rgba(255,255,255,0.05)",
-                              flexShrink: 0,
-                            }}
-                          >
-                            {timeOrStatus}
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
-              </div>
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "40px",
-                }}
-              >
-                <p style={{ color: "#8b949e" }}>
-                  No results available for this session.
-                </p>
-              </div>
-            )}
-          </div>
-        </section>
+                        </Link>
+                      );
+                    })}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "40px",
+                  }}
+                >
+                  <p style={{ color: "#8b949e" }}>
+                    No results available for this session.
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         <section className={styles.card} style={{ gridColumn: "span 2" }}>
           <h2>Past Winners</h2>

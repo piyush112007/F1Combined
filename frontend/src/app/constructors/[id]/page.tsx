@@ -32,7 +32,7 @@ function DriverBriefSection({ driverId, driverStandings }: { driverId: string, d
         <img 
           src={imageUrl} 
           alt={`${driver.name} ${driver.surname}`} 
-          style={{ width: '80px', height: '80px', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', backgroundColor: getDriverTeamColor(driverId), border: `2.5px solid ${getDriverBorderColor(driverId)}` }}
+          style={{ width: '80px', height: '80px', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', backgroundColor: getDriverTeamColor(driverId), border: `2.5px solid ${getDriverBorderColor(driverId)}`, flexShrink: 0 }}
         />
       ) : (
         <div style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 'bold', color: '#ff2800', fontFamily: 'monospace', border: `2.5px solid ${getDriverBorderColor(driverId)}` }}>

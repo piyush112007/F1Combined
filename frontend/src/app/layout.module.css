@@ -6,6 +6,7 @@
 }
 
 .sidebar {
+  position: relative; /* Relative position for floating collapse button */
   width: 250px;
   background-color: var(--bg-card);
   border-right: 1px solid var(--glass-border);
@@ -14,6 +15,7 @@
   padding: var(--space-lg) 0;
   z-index: 100;
   flex-shrink: 0;
+  transition: width var(--transition-normal);
 }
 
 .logo {
@@ -21,18 +23,32 @@
   margin-bottom: var(--space-xl);
   display: flex;
   align-items: center;
+  transition: padding var(--transition-normal), justify-content var(--transition-normal);
 }
 
 .logoLink {
   display: flex;
   align-items: center;
   text-decoration: none;
+  overflow: hidden;
+  width: 100%;
+  height: 42px;
+  transition: width var(--transition-normal), height var(--transition-normal), justify-content var(--transition-normal);
 }
 
 .logoImg {
   height: 42px;
   width: auto;
   object-fit: contain;
+  transition: max-width var(--transition-normal), height var(--transition-normal), transform var(--transition-normal);
+}
+
+.logoFull {
+  display: block;
+}
+
+.logoCollapsed {
+  display: none;
 }
 
 .navLinks {
@@ -47,8 +63,11 @@
   color: var(--text-secondary);
   font-size: 14px;
   font-weight: 500;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast), padding var(--transition-normal), justify-content var(--transition-normal);
   border-left: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
 }
 
 .navLink:hover {
@@ -63,23 +82,80 @@
   border-left-color: var(--accent-red);
 }
 
+.navIcon {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.navLink:hover .navIcon {
+  transform: scale(1.1);
+}
+
+.navLabel {
+  white-space: nowrap;
+  opacity: 1;
+  max-width: 180px;
+  transition: opacity 0.2s ease, max-width 0.2s ease, margin var(--transition-normal);
+  overflow: hidden;
+}
+
 .navFooter {
   padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: padding var(--transition-normal);
 }
 
 .settingsBtn {
   width: 100%;
-  padding: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
   background-color: var(--bg-card-hover);
   color: var(--text-secondary);
   border-radius: var(--radius-md);
   font-size: 13px;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal), background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .settingsBtn:hover {
   background-color: rgba(255, 40, 0, 0.2);
   color: white;
+}
+
+.settingsBtn:hover .navIcon {
+  transform: scale(1.1);
+}
+
+.collapseBtn {
+  position: absolute;
+  right: -16px; /* Offset exactly half of the 32px width to center on 1px border */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 110; /* Ensure it floats above content and borders */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: all var(--transition-fast);
+}
+
+.collapseBtn:hover {
+  background-color: var(--accent-red);
+  color: white;
+  border-color: var(--accent-red);
+  transform: translateY(-50%) scale(1.15); /* Keep vertical center transform and scale up */
 }
 
 .mainContent {
@@ -428,6 +504,59 @@
   .pageContent {
     padding: var(--space-md);
   }
+
+  .sidebarCollapsed {
+    width: 250px !important;
+  }
+  
+  .sidebarCollapsed .navLabel {
+    opacity: 1 !important;
+    max-width: 180px !important;
+  }
+  
+  .sidebarCollapsed .navLink {
+    padding: var(--space-md) var(--space-lg) !important;
+    justify-content: flex-start !important;
+    gap: var(--space-md) !important;
+  }
+
+  .sidebarCollapsed .logo {
+    padding: 0 var(--space-lg) !important;
+    justify-content: flex-start !important;
+  }
+
+  .sidebarCollapsed .logoLink {
+    width: 100% !important;
+    height: 42px !important;
+    justify-content: flex-start !important;
+  }
+
+  .sidebarCollapsed .logoImg {
+    height: 42px !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+
+  .sidebarCollapsed .logoFull,
+  .logoFull {
+    display: block !important;
+  }
+
+  .sidebarCollapsed .logoCollapsed,
+  .logoCollapsed {
+    display: none !important;
+  }
+
+  .sidebarCollapsed .settingsBtn,
+  .sidebarCollapsed .collapseBtn {
+    padding: var(--space-sm) var(--space-md) !important;
+    justify-content: flex-start !important;
+    gap: var(--space-md) !important;
+  }
+  
+  .collapseBtn {
+    display: none !important;
+  }
 }
 
 .signOutOverlay {
@@ -540,4 +669,60 @@
 
 .signOutConfirmBtn:hover {
   opacity: 0.9;
+}
+
+/* Sidebar Collapsed State (Desktop) */
+@media (min-width: 769px) {
+  .sidebarCollapsed {
+    width: 72px;
+  }
+
+  .sidebarCollapsed .logo {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .sidebarCollapsed .logoLink {
+    width: 100%;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebarCollapsed .logoImg {
+    height: 32px;
+    max-width: 100%;
+    transform: none;
+  }
+
+  .sidebarCollapsed .logoFull {
+    display: none;
+  }
+
+  .sidebarCollapsed .logoCollapsed {
+    display: block;
+  }
+
+  .sidebarCollapsed .navLink {
+    padding: var(--space-md) 0;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .sidebarCollapsed .navLabel {
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
+    margin: 0;
+  }
+
+  .sidebarCollapsed .navFooter {
+    padding: var(--space-md) var(--space-xs);
+  }
+
+  .sidebarCollapsed .settingsBtn {
+    padding: var(--space-sm) 0;
+    justify-content: center;
+    gap: 0;
+  }
 }
